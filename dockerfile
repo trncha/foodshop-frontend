@@ -1,34 +1,26 @@
 # Stage 1: Build the React application
 FROM node:18-alpine as build
 
-# Set the working directory in the Docker image
 WORKDIR /app
 
-# Copy package.json and package-lock.json (or yarn.lock) files
 COPY package*.json ./
 
-# Install all dependencies
 RUN npm install
 
-# Copy the rest of your application's source code
 COPY . .
 
-# Build the application
 RUN npm run build
 
-# Stage 2: Serve the application using Nginx
-FROM nginx:stable-alpine
+# Stage 2: Serve the application using serve
+FROM node:18-alpine
 
-# Set the working directory to nginx asset directory
-WORKDIR /usr/share/nginx/html
+WORKDIR /app
 
-# Remove default nginx static assets
-RUN rm -rf ./*
+# Install serve - A static file serving and directory listing server
+RUN npm install -g serve
 
-COPY default.conf /etc/nginx/conf.d/default.conf
+# Copy the build output from the previous stage
+COPY --from=build /app/dist /app
 
-# Copy static assets from builder stage
-COPY --from=build /app/dist .
-
-# Containers run nginx with global directives and daemon off
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+# Serve the static files
+CMD ["serve", "-s", "/app", "-l", "80"]
