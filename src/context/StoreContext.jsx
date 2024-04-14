@@ -36,6 +36,7 @@ const StoreContextProvider = (props) => {
 
 	useEffect(() => {
 		const fetchFoodList = async () => {
+			console.log(apiUrl)
 			setIsLoading(true);
 			try {
 				const response = await fetch(`${apiUrl}/api-myfoodShop/food`);
