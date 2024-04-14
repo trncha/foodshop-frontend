@@ -27,14 +27,14 @@ jobs:
           gcloud auth configure-docker asia-southeast1-docker.pkg.dev
           docker build -t asia-southeast1-docker.pkg.dev/myfoodshop-420307/repo-foodshop/frontend:latest .
           docker push asia-southeast1-docker.pkg.dev/myfoodshop-420307/repo-foodshop/frontend:latest
-      # - name: Deploy to Cloud Run
-      #   env:
-      #     SERVICE_NAME: frontend
-      #     IMAGE_URL: asia-southeast1-docker.pkg.dev/myfoodshop-420307/repo-foodshop/frontend:latest
-      #     REGION: asia-southeast1
-      #   run: |
-      #     gcloud run deploy $SERVICE_NAME \
-      #       --image $IMAGE_URL \
-      #       --region $REGION \
-      #       --platform managed \
-      #       --allow-unauthenticated
+      - name: Deploy to Cloud Run
+        env:
+          SERVICE_NAME: frontend
+          IMAGE_URL: asia-southeast1-docker.pkg.dev/myfoodshop-420307/repo-foodshop/frontend:latest
+          REGION: asia-southeast1
+        run: |
+          gcloud run deploy $SERVICE_NAME \
+            --image $IMAGE_URL \
+            --region $REGION \
+            --platform managed \
+            --allow-unauthenticated
