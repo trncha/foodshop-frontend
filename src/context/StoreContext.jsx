@@ -1,6 +1,8 @@
 import { createContext, useEffect, useState } from "react";
 // import { food_list } from "../assets/assets";
 const apiUrl = import.meta.env.VITE_BACKEND_URL;
+// const apiUrl = process.env.BACKEND_URL;
+
 
 export const StoreContext = createContext(null)
 
@@ -39,7 +41,8 @@ const StoreContextProvider = (props) => {
 			console.log(apiUrl)
 			setIsLoading(true);
 			try {
-				const response = await fetch(`${apiUrl}/api-myfoodShop/food`);
+				// const response = await fetch(`${apiUrl}/api-myfoodShop/food`);
+				const response = await fetch('https://backend-6fj4h3coyq-as.a.run.app/api-myfoodShop/food');
 				if (!response.ok) {
 					throw new Error('Network response was not ok');
 				}
