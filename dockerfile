@@ -2,6 +2,7 @@
 # ใช้ Node.js 18 ที่เป็น official image จาก Docker Hub
 FROM node:18-alpine as build
 
+ARG APP_BACKEND_URL
 # ตั้งค่า working directory ใน container
 WORKDIR /app
 
@@ -14,6 +15,7 @@ RUN npm install
 # คัดลอกทุกไฟล์จาก project ไปยัง working directory ใน container
 COPY . .
 
+ENV APP_BACKEND_URL=$APP_BACKEND_URL
 # Build แอพพลิเคชันสำหรับ production
 RUN npm run build
 
