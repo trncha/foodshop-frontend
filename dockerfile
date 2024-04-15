@@ -59,7 +59,7 @@ RUN npm install
 FROM dependencies AS build
 COPY . .
 # Build static assets
-RUN npm run build
+RUN npx vite build
 
 # --- Release with Alpine ----
 FROM base AS release
