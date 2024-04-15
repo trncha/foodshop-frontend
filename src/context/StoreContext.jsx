@@ -38,13 +38,15 @@ const StoreContextProvider = (props) => {
 
 	useEffect(() => {
 		const fetchFoodList = async () => {
-			console.log('VITE_BACKEND_URL =>', import.meta.env.VITE_BACKEND_URL)
-			console.log('env =>', import.meta.env.MODE)
-			console.log('env Backend =>', import.meta.env.BACKEND_URL)
+			// console.log('VITE_BACKEND_URL =>', import.meta.env.VITE_BACKEND_URL)
+			// console.log('env =>', import.meta.env.MODE)
+			// console.log('env Backend =>', import.meta.env.BACKEND_URL)
+			// console.log('env VITE_BACKEND_URL process =>', process.env.VITE_BACKEND_URL)
+
 			setIsLoading(true);
 			try {
-				// const response = await fetch(`${apiUrl}/api-myfoodShop/food`);
-				const response = await fetch('https://backend-6fj4h3coyq-as.a.run.app/api-myfoodShop/food');
+				const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api-myfoodShop/food`);
+				// const response = await fetch('https://backend-6fj4h3coyq-as.a.run.app/api-myfoodShop/food');
 				if (!response.ok) {
 					throw new Error('Network response was not ok');
 				}
