@@ -1,6 +1,7 @@
 # Stage 1: Build the React application
 FROM node:18-alpine as build
 
+ARG VITE_BACKEND_URL
 # Set the working directory in the Docker image
 WORKDIR /app
 
@@ -12,6 +13,8 @@ RUN npm install
 
 # Copy the rest of your application's source code
 COPY . .
+
+ENV VITE_BACKEND_URL=$VITE_BACKEND_URL
 
 # Build the application
 RUN npm run build -- --mode prod
