@@ -32,9 +32,11 @@ jobs:
           SERVICE_NAME: frontend
           IMAGE_URL: asia-southeast1-docker.pkg.dev/myfoodshop-420307/repo-foodshop/frontend:latest
           REGION: asia-southeast1
+          VITE_BACKEND_URL: ${{ secrets.VITE_BACKEND_URL }}
         run: |
           gcloud run deploy $SERVICE_NAME \
             --image $IMAGE_URL \
             --region $REGION \
             --platform managed \
-            --allow-unauthenticated 
+            --allow-unauthenticated \
+            --set-env-vars VITE_BACKEND_URL=$VITE_BACKEND_URL
