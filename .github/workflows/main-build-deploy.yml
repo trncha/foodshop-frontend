@@ -25,7 +25,7 @@ jobs:
           GOOGLE_PROJECT: ${{ secrets.GOOGLE_PROJECT }}
         run: |
           gcloud auth configure-docker asia-southeast1-docker.pkg.dev
-          docker build -t asia-southeast1-docker.pkg.dev/myfoodshop-420307/repo-foodshop/frontend:latest .
+          docker build --build-arg APP_BACKEND_URL=$APP_BACKEND_URL -t asia-southeast1-docker.pkg.dev/myfoodshop-420307/repo-foodshop/frontend:latest .
           docker push asia-southeast1-docker.pkg.dev/myfoodshop-420307/repo-foodshop/frontend:latest
       - name: Deploy to Cloud Run
         env:
