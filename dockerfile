@@ -14,7 +14,6 @@ RUN npm install
 # คัดลอกทุกไฟล์จาก project ไปยัง working directory ใน container
 COPY . .
 
-COPY .env.production .env
 # Build แอพพลิเคชันสำหรับ production
 RUN npm run build
 
