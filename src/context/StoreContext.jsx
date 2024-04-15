@@ -39,7 +39,8 @@ const StoreContextProvider = (props) => {
 	useEffect(() => {
 		const fetchFoodList = async () => {
 			console.log('VITE_BACKEND_URL =>', import.meta.env.VITE_BACKEND_URL)
-			console.log('env =>', import.meta.env)
+			console.log('env =>', import.meta.env.MODE)
+			console.log('env Backend =>', import.meta.env.BACKEND_URL)
 			setIsLoading(true);
 			try {
 				// const response = await fetch(`${apiUrl}/api-myfoodShop/food`);
