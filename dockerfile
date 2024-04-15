@@ -17,7 +17,7 @@ COPY . .
 ENV VITE_BACKEND_URL=$VITE_BACKEND_URL
 
 # Build the application
-RUN npm run build -- --mode prod
+RUN npm run build
 
 # Stage 2: Serve the application using Nginx
 FROM nginx:stable-alpine
