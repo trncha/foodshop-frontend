@@ -39,4 +39,4 @@ jobs:
             --region $REGION \
             --platform managed \
             --allow-unauthenticated \
-            --set-env-vars VITE_BACKEND_URL=${VITE_BACKEND_URL}
+            --set-env-vars VITE_BACKEND_URL=$VITE_BACKEND_URL
