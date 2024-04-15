@@ -23,9 +23,10 @@ jobs:
       - name: build and push docker image
         env:
           GOOGLE_PROJECT: ${{ secrets.GOOGLE_PROJECT }}
+          APP_BACKEND_URL: ${{ secrets.APP_BACKEND_URL }}
         run: |
           gcloud auth configure-docker asia-southeast1-docker.pkg.dev
-          docker build --build-arg APP_BACKEND_URL=https://backend-6fj4h3coyq-as.a.run.app -t asia-southeast1-docker.pkg.dev/myfoodshop-420307/repo-foodshop/frontend:latest .
+          docker build --build-arg APP_BACKEND_URL=${APP_BACKEND_URL} -t asia-southeast1-docker.pkg.dev/myfoodshop-420307/repo-foodshop/frontend:latest .
           docker push asia-southeast1-docker.pkg.dev/myfoodshop-420307/repo-foodshop/frontend:latest
       - name: Deploy to Cloud Run
         env:
